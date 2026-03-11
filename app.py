@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
-DATABASE = "behavior.db"
+DATABASE = "/tmp/behavior.db"
 LOCK_MINUTES = 5
 
 # ===============================
