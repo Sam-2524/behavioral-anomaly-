@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login History</title>
+<style>
+body {
+    font-family:Arial;
+    background:#0f2027;
+    color:white;
+    padding:20px;
+}
+table {
+    width:100%;
+    border-collapse:collapse;
+    background:#203a43;
+}
+th, td {
+    padding:10px;
+    border:1px solid #2c5364;
+    text-align:center;
+}
+th {
+    background:#2c5364;
+}
+tr:hover {
+    background:#34495e;
+}
+.allowed { color:lightgreen; }
+.high { color:orange; }
+.blocked { color:red; }
+</style>
+</head>
+<body>
+
+<h2>Login History</h2>
+
+<table>
+<tr>
+<th>ID</th>
+<th>Username</th>
+<th>Total</th>
+<th>User</th>
+<th>Pass</th>
+<th>Risk</th>
+<th>Decision</th>
+<th>IP</th>
+<th>Device</th>
+<th>Time</th>
+</tr>
+
+{% for row in records %}
+<tr>
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+<td>{{ row[3] }}</td>
+<td>{{ row[4] }}</td>
+<td>{{ row[5] }}</td>
+<td class="
+{% if row[6] == 'Allowed' %}allowed
+{% elif row[6] == 'High Risk' %}high
+{% else %}blocked
+{% endif %}
+">
+{{ row[6] }}
+</td>
+<td>{{ row[7] }}</td>
+<td>{{ row[8] }}</td>
+<td>{{ row[9] }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+<a href="/"><button style="padding:8px;">Back</button></a>
+
+</body>
+</html>

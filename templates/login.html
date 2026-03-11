@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secure Login</title>
+<style>
+body {
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial;
+    background:linear-gradient(135deg,#1f4037,#99f2c8);
+}
+.card {
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    width:350px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+input, button {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+button {
+    background:#1f4037;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+button:hover {
+    background:#145a32;
+}
+</style>
+<script>
+let start=Date.now(), userStart=0, passStart=0;
+function userFocus(){userStart=Date.now();}
+function passFocus(){passStart=Date.now();}
+function capture(){
+    document.getElementById("total_time").value=Date.now()-start;
+    document.getElementById("username_time").value=Date.now()-userStart;
+    document.getElementById("password_time").value=Date.now()-passStart;
+}
+</script>
+</head>
+<body>
+<div class="card">
+<h2>Behavioral Login</h2>
+<form action="/login" method="POST" onsubmit="capture()">
+<input type="text" name="username" placeholder="Username" required onfocus="userFocus()">
+<input type="password" name="password" placeholder="Password" required onfocus="passFocus()">
+<input type="hidden" name="total_time" id="total_time">
+<input type="hidden" name="username_time" id="username_time">
+<input type="hidden" name="password_time" id="password_time">
+<button type="submit">Login</button>
+</form>
+</div>
+</body>
+</html>

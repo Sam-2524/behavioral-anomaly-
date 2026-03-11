@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<style>
+body {
+    font-family:Arial;
+    background:linear-gradient(135deg,#232526,#414345);
+    color:white;
+    padding:20px;
+}
+.card {
+    background:#2c3e50;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+.locked { color:red; font-weight:bold; }
+.active { color:lightgreen; font-weight:bold; }
+button {
+    padding:8px 15px;
+    border:none;
+    border-radius:6px;
+    background:#16a085;
+    color:white;
+    cursor:pointer;
+}
+button:hover { background:#138d75; }
+</style>
+</head>
+<body>
+
+<h2>Admin Dashboard</h2>
+
+{% for user in users %}
+<div class="card">
+<p><b>Username:</b> {{ user[0] }}</p>
+<p><b>Total Logins:</b> {{ user[1] }}</p>
+<p><b>Failed Attempts:</b> {{ user[2] }}</p>
+
+{% if user[3] %}
+<p class="locked">Status: Locked until {{ user[3] }}</p>
+{% else %}
+<p class="active">Status: Active</p>
+{% endif %}
+</div>
+{% endfor %}
+
+<a href="/"><button>Back</button></a>
+
+</body>
+</html>

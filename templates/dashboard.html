@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Behavior Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h2>User Behavior Analytics</h2>
+
+<canvas id="myChart" width="600" height="300"></canvas>
+
+<script>
+    const dataFromBackend = {{ data | tojson | safe }};
+
+    console.log(dataFromBackend);   // Debug line
+
+    const usernames = dataFromBackend.map(item => item[0]);
+    const avgTimes = dataFromBackend.map(item => item[1]);
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: usernames,
+            datasets: [{
+                label: 'Average Total Typing Time (ms)',
+                data: avgTimes
+            }]
+        }
+    });
+</script>
+
+</body>
+</html>
